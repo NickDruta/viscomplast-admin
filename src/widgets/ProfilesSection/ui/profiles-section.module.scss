@@ -1,0 +1,29 @@
+.profilesSection {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ebebeb;
+  border-radius: 40px;
+  padding: 32px 24px;
+
+  .title {
+    font-family: "Inter-Medium", sans-serif;
+    font-size: 30px;
+    line-height: 35px;
+    color: #272727;
+    margin-bottom: 15px;
+  }
+
+  .dataWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    @media screen and (max-width: 1200px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .addItem {
+      border-radius: 30px;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+.button {
+  background: #18437e;
+  border: 1px solid #18437e;
+  border-radius: 99px;
+  padding: 16px;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 16px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+
+  &.secondary {
+    background: transparent;
+    border: 1px solid #ec0202;
+    color: #ec0202;
+  }
+
+  &:disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed;
+  }
+}

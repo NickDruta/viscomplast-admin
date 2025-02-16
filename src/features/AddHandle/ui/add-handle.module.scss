@@ -1,0 +1,46 @@
+.title {
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 32px;
+  text-align: center;
+  color: #272727;
+}
+
+.wrapper {
+  display: flex;
+  gap: 20px;
+  width: 600px;
+
+  .imageWrapper {
+    width: 50%;
+    height: 390px;
+    position: relative;
+
+    & > div > div > button {
+      top: 5px;
+      right: 5px;
+    }
+  }
+
+  .inputWrapper {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    & > p {
+      font-family: "Inter-Regular", sans-serif;
+      font-size: 18px;
+      color: #272727;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+
+  button {
+    width: 140px;
+  }
+}

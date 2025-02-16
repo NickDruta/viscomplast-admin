@@ -1,0 +1,48 @@
+.title {
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 30px;
+  line-height: 35px;
+  color: #272727;
+  margin-bottom: 15px;
+}
+
+.content {
+  display: flex;
+  gap: 48px;
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .inputWrapper {
+      & > p {
+        font-family: "Inter-Regular", sans-serif;
+        font-size: 18px;
+        line-height: 20px;
+        color: #272727;
+        margin-bottom: 12px;
+      }
+
+      .imageWrapper {
+        width: 400px;
+        height: 476.5px;
+      }
+
+      .charateristics {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+.buttonsWrapper {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+  button {
+    width: 140px;
+  }
+}

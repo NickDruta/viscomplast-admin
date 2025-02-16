@@ -1,0 +1,63 @@
+.adminNavBarWrapper {
+  width: fit-content;
+  height: 100%;
+  background: #ffffff;
+  border: 1px solid #ebebeb;
+  border-bottom-right-radius: 40px;
+  border-top-right-radius: 40px;
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 59px;
+  justify-content: center;
+
+  .logo {
+    height: 48px;
+    width: auto;
+  }
+
+  .optionsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .optionWrapper {
+      background: #ffffff;
+      border: 1px solid #ebebeb;
+      border-radius: 99px;
+      padding: 16px 24px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.3s;
+
+      p {
+        font-family: "Inter-Medium", sans-serif;
+        font-size: 16px;
+        color: #585858;
+      }
+
+      &.activeOption {
+        background: #18437e;
+
+        img {
+          filter: brightness(0) invert(1);
+        }
+
+        p {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+
+  .info {
+    font-family: "Inter-Regular", sans-serif;
+    font-size: 14px;
+    text-align: center;
+    color: #a5a5a5;
+  }
+}

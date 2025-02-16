@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  height: 100vh;
+
+  .adminContent {
+    width: 100%;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .dataWrapper {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      overflow-y: auto;
+
+      @media screen and (max-width: 1200px) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  }
+}

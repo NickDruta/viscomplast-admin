@@ -1,0 +1,9 @@
+export { default as ArrowUpDownIcon } from "./icons/ArrowUpDownIcon";
+export { default as BinIcon } from "./icons/BinIcon";
+export { default as KeyboardLeftIcon } from "./icons/KeyboardLeftIcon";
+export { default as PencilIcon } from "./icons/PencilIcon";
+export { default as PhotoIcon } from "./icons/PhotoIcon";
+export { default as PlusIcon } from "./icons/PlusIcon";
+export { default as ConfirmIcon } from "./icons/ConfirmIcon";
+export { default as CancelIcon } from "./icons/CancelIcon";
+export { default as CheckboxIcon } from "./icons/CheckboxIcon";

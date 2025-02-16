@@ -1,0 +1,23 @@
+.title {
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 30px;
+  line-height: 35px;
+  color: #272727;
+  margin-bottom: 15px;
+}
+
+.textArea {
+  & textarea {
+    width: 500px !important;
+    height: 100px !important;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+
+  button {
+    width: 100%;
+  }
+}

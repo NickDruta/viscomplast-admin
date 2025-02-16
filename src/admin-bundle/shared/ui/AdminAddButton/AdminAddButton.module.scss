@@ -1,0 +1,13 @@
+.addButton {
+  width: 56px;
+  height: 56px;
+  background: #18437e;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px 0 rgba(44, 53, 255, 0.2);
+  border: unset;
+  cursor: pointer;
+  user-select: none;
+}

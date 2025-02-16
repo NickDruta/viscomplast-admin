@@ -1,0 +1,16 @@
+.title {
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 32px;
+  text-align: center;
+  color: #272727;
+  max-width: 270px;
+}
+
+.actionsWrapper {
+  display: flex;
+  gap: 16px;
+
+  & > button {
+    flex: 1;
+  }
+}

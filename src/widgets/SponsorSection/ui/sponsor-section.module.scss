@@ -1,0 +1,39 @@
+.wrapper {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ebebeb;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  position: relative;
+  margin-bottom: 20px;
+
+  .title {
+    font-family: "Inter-Medium", sans-serif;
+    font-size: 30px;
+    line-height: 35px;
+    color: #272727;
+  }
+
+  .description {
+    font-size: 18px;
+    line-height: 20px;
+    color: #272727;
+  }
+
+  .edit {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 34px;
+    height: 34px;
+    z-index: 1;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+.wrapper {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ebebeb;
+  border-radius: 40px;
+  padding: 32px 24px;
+  position: relative;
+
+  .title {
+    font-family: "Inter-Medium", sans-serif;
+    font-size: 30px;
+    line-height: 35px;
+    color: #272727;
+    margin-bottom: 15px;
+  }
+
+  .description {
+    font-size: 18px;
+    line-height: 20px;
+    color: #272727;
+  }
+
+  .edit {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+  }
+}
