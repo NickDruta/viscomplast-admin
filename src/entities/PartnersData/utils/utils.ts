@@ -11,7 +11,7 @@ import { db, storage } from "shared/config";
 
 export const listPartnerFiles = async (): Promise<string[]> => {
   try {
-    const partnersRef = ref(storage, "partners");
+    const partnersRef = ref(storage, "sponsorSection");
 
     const listResult = await listAll(partnersRef);
 
@@ -27,7 +27,7 @@ export const listPartnerFiles = async (): Promise<string[]> => {
 
 export const uploadPartnerFile = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
-    const storageRef = ref(storage, `partners/${file.name}`);
+    const storageRef = ref(storage, `sponsorSection/${file.name}`);
 
     const uploadTask = uploadBytesResumable(storageRef, file);
 

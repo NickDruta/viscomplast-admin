@@ -85,8 +85,9 @@ const AddSliding = ({ parent, onClose, edit }: Props) => {
         <div className={clsx(cls.section, cls.imageWrapper)}>
           <AdminImageUploader
             onUpload={handleUpload}
-            image={gallery[0]}
+            images={gallery}
             loading={loading}
+            isMultiple={true}
           />
         </div>
         <div className={cls.section}>

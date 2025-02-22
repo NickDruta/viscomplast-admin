@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 import {
@@ -121,7 +121,7 @@ const AddProfile = ({ parent, onClose, data }: Props) => {
             <div className={cls.imageWrapper}>
               <AdminImageUploader
                 onUpload={handleUpload}
-                image={data ? image : undefined}
+                images={data ? [image] : undefined}
                 loading={loading}
               />
             </div>

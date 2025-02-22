@@ -105,7 +105,7 @@ const AddHandle = ({ parent, onClose, data }: Props) => {
         <div className={cls.imageWrapper}>
           <AdminImageUploader
             onUpload={handleUpload}
-            image={data && image ? image : undefined}
+            images={data && image ? [image] : undefined}
             loading={loading}
           />
         </div>

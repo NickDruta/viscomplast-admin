@@ -7,29 +7,39 @@ import {
 } from "admin-bundle/shared/ui";
 
 import cls from "./admin-image-uploader.module.scss";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { PlusIcon } from "../../assets";
 
 interface Props {
   onUpload?: (file: File) => Promise<string>;
-  onUploadSuccess?: (downloadUrl: string) => (file: File) => Promise<string>;
-  image?: string;
+  onUploadSuccess?: (downloadUrl: string) => void;
+  images?: string[]; // Array of image URLs
   loading?: boolean;
+  isMultiple?: boolean; // Determines if it's single or multiple upload
 }
 
 const AdminImageUploader = ({
   onUpload,
   onUploadSuccess,
-  image,
+  images = [],
   loading,
+  isMultiple = false,
 }: Props) => {
-  const [file, setFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string>(image ?? "");
+  const [files, setFiles] = useState<File[]>([]);
+  const [previewUrls, setPreviewUrls] = useState<string[]>(images);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleFileChange = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      const selectedFile = event.target.files[0];
-      setFile(selectedFile);
-      setPreviewUrl(URL.createObjectURL(selectedFile));
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      const selectedFiles = Array.from(event.target.files);
+      setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
+      const newPreviewUrls = selectedFiles.map((file) =>
+        URL.createObjectURL(file),
+      );
+      setPreviewUrls((prevUrls) =>
+        isMultiple ? [...prevUrls, ...newPreviewUrls] : newPreviewUrls,
+      );
     }
   };
 
@@ -37,25 +47,27 @@ const AdminImageUploader = ({
     fileInputRef.current?.click();
   };
 
-  const handleDelete = () => {
-    setFile(null);
-    setPreviewUrl("");
+  const handleDelete = (index: number) => {
+    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+    setPreviewUrls((prevUrls) => prevUrls.filter((_, i) => i !== index));
   };
 
   const handleSave = () => {
-    if (!file) {
-      console.warn("No file selected.");
+    if (!files.length) {
+      console.warn("No files selected.");
       return;
     }
-    onUpload?.(file)
-      .then((downloadUrl) => {
-        if (onUploadSuccess) {
-          onUploadSuccess(downloadUrl);
-        }
-      })
-      .catch((error) => {
-        console.error("Error uploading file:", error);
-      });
+    files.forEach((file) => {
+      onUpload?.(file)
+        .then((downloadUrl) => {
+          if (onUploadSuccess) {
+            onUploadSuccess(downloadUrl);
+          }
+        })
+        .catch((error) => {
+          console.error("Error uploading file:", error);
+        });
+    });
   };
 
   return (
@@ -66,24 +78,92 @@ const AdminImageUploader = ({
         ref={fileInputRef}
         style={{ display: "none" }}
         onChange={handleFileChange}
+        multiple={isMultiple}
+        accept="image/*"
       />
 
       {/* Show file selection button if no preview exists */}
-      {!previewUrl ? (
+      {previewUrls.length === 0 ? (
         <div className={cls.inputFileContainer}>
           <AdminAddButton onClick={handleButtonClick} />
         </div>
-      ) : (
-        // Show preview and delete button if a file has been selected
+      ) : isMultiple ? (
+        // Multiple images - Show carousel
         <div className={cls.previewContainer}>
-          <img src={previewUrl} alt="Preview" className={cls.previewImage} />
-          <AdminBinButton onClick={handleDelete} className={cls.deleteButton} />
+          <Carousel
+            showThumbs={false}
+            infiniteLoop
+            className={cls.carousel}
+            renderArrowPrev={(onClickHandler, hasPrev) =>
+              hasPrev && (
+                <AdminButton onClick={onClickHandler} className={cls.arrowLeft}>
+                  {"←"}
+                </AdminButton>
+              )
+            }
+            renderArrowNext={(onClickHandler, hasNext) =>
+              hasNext && (
+                <AdminButton
+                  onClick={onClickHandler}
+                  className={cls.arrowRight}
+                >
+                  {"→"}
+                </AdminButton>
+              )
+            }
+          >
+            {previewUrls.map((url, index) => (
+              <div key={index} className={cls.carouselItem}>
+                <img
+                  src={url}
+                  alt={`Preview ${index + 1}`}
+                  className={cls.previewImage}
+                />
+                <AdminBinButton
+                  onClick={() => handleDelete(index)}
+                  className={cls.deleteButton}
+                />
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      ) : (
+        // Single image - Show image only
+        <div className={cls.previewContainer}>
+          <img
+            src={previewUrls[0]}
+            alt="Preview"
+            className={cls.previewImage}
+          />
+          <AdminBinButton
+            onClick={() => handleDelete(0)}
+            className={cls.deleteButton}
+          />
         </div>
       )}
 
-      <AdminButton onClick={handleSave} disabled={loading}>
-        Salvează poza
-      </AdminButton>
+      <div
+        style={{ display: "flex", gap: 15, justifyContent: "space-between" }}
+      >
+        <AdminButton
+          onClick={handleSave}
+          disabled={loading}
+          style={{ width: "100%" }}
+        >
+          Salvează pozele
+        </AdminButton>
+
+        {/* Show Plus Button only if it's multiple images mode */}
+        {isMultiple && (
+          <AdminButton
+            onClick={handleButtonClick}
+            disabled={loading}
+            style={{ minWidth: 52, height: 52 }}
+          >
+            <PlusIcon width={16} height={16} fill={"#fff"} />
+          </AdminButton>
+        )}
+      </div>
     </div>
   );
 };
